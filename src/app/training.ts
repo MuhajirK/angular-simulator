@@ -73,7 +73,7 @@ function setCapitalize(str: string): string{
   return stringValue.charAt(0).toUpperCase() + stringValue.slice(1).toLowerCase();
 };
 
-console.log(format('HELlow', textFormat));
+format('HELlow', textFormat);
 
 
 // 9. Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
