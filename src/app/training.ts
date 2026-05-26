@@ -1,5 +1,6 @@
 // ДЗ 14
 // 3 Создать функцию, которая принимает 2 числа и возвращает их сумму
+export {}
 
 let sum = (a:number, b:number): number => {
   return a + b;
@@ -9,8 +10,8 @@ const summa = sum(2, 5);
 
 // 4. Создать переменную status, которая может быть только: "loading", "success", "error".
 
-let state: "loading" | "success" | "error";
-state = "loading";
+let status: "loading" | "success" | "error";
+status = "loading";
 
 
 //5.  Создать переменную textFormat, которая может быть только: 'uppercase', 'lowercase', 'capitalize'".
@@ -73,7 +74,7 @@ function setCapitalize(str: string): string{
   return stringValue.charAt(0).toUpperCase() + stringValue.slice(1).toLowerCase();
 };
 
-format('HELlow', textFormat);
+console.log(format('HELlow', textFormat));
 
 
 // 9. Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
