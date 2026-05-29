@@ -1,7 +1,7 @@
 //  ДЗ 15.5 создать файл collection.ts, который реализует внутри себя класс Collection, работающий с любым типом данных
 
 const users: string[] = ['Boris','Vlad'];
-const evenNumbers: number[] = [0, 2, 4, 6, 8];
+const evenNumbers: number[] = [2, 4, 6, 8];
 
 export class Collection<T> {
   items: T[] = [];

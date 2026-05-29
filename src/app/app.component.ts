@@ -11,38 +11,31 @@ import './collection';
 })
 export class AppComponent {
   firmName: string = 'румтибет';
-}
+  private readonly LAST_VISIT_DATE: string = 'lastVisitDate';
+  private readonly VISIT_COUNT: string = 'visitCount';
 
-
-// ДЗ 15.2 создать метод внутри app.component, который проверяет, является ли переданный цвет основным
-
-function isBasicColor(color: Colors): boolean {
-  if (color === Colors.RED || color === Colors.GREEN || color === Colors.BLUE) {
-    return true;
-  };
-  return false;
-};
-
-isBasicColor(Colors.YELLOW);
-
-
-// ДЗ 15 №3-4 создать метод, который сохраняет в локальное хранилище дату последнего захода и количество посещений
-
-class VisitTracker {
-  LAST_VISIT_DATE: string = 'lastVisitDate';
-  VISIT_COUNT: string = 'visitCount';
-  constructor() {
-    this.getVisitCount();
+  constructor(){
+    this.isBasicColor(Colors.BLACK);
     this.saveVisit();
-  };
+  }
+
+
+  // ДЗ 15.2 создать метод внутри app.component, который проверяет, является ли переданный цвет основным
+
+  isBasicColor(color: Colors): boolean{
+    return (color === Colors.RED || color === Colors.GREEN || color === Colors.BLUE) 
+  }
+  
+  
+  // ДЗ 15 №3-4 создать метод, который сохраняет в локальное хранилище дату последнего захода и количество посещений
 
   saveVisit(): void {
     const currentDate = new Date().toLocaleString();
     localStorage.setItem(this.LAST_VISIT_DATE, currentDate);
-    const savedData = this.getVisitCount();
-    if (savedData !== null) {
-      const newData: number = Number(savedData) + 1;
-      localStorage.setItem(this.VISIT_COUNT, String(newData));
+    const savedCount = this.getVisitCount();
+    if (savedCount !== null) {
+      const newCount: number = Number(savedCount) + 1;
+      localStorage.setItem(this.VISIT_COUNT, String(newCount));
     }
     else {
       localStorage.setItem(this.VISIT_COUNT, '1');
@@ -50,9 +43,6 @@ class VisitTracker {
   };
 
   getVisitCount(): string|null {
-    const savedData: string|null = localStorage.getItem('visitCount');
-    return savedData;
+    return localStorage.getItem(this.VISIT_COUNT);
   };
-};
-
-const tracker = new VisitTracker();
+}
