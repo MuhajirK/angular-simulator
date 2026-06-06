@@ -1,0 +1,177 @@
+
+* {
+  box-sizing: border-box;
+};
+
+header {
+  position: fixed;
+  width: 100%;
+  background-color: rgba(24, 18, 30, 0.5);
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+    .logotip {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 132px;
+    };
+
+    .firm-logo {
+      margin: 0 auto;
+      text-transform: uppercase;
+      text-align: justify;
+      letter-spacing: 7px;
+    };
+
+    .header-info {
+      display: flex;
+      gap: 130px;
+      align-items: center;
+    };
+
+    #consultation-btn {
+      background-color: var(--white-color);
+      border-radius: 5px;
+      height: 44px;
+      width: 158px;
+      border: none;
+      cursor: pointer;
+    };
+
+    .nav-wrapper {
+      display: inline-flex;
+      justify-content:space-around; 
+      align-items: center;
+      gap: 23px;
+      height: 25px;
+      width: 625px;
+      line-height: 100%;
+      cursor: pointer;
+        
+        a {
+          color: var(--white-color);
+          text-decoration: none;
+        };
+    };
+};
+
+.main-info {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 985px;
+
+  .banner {
+    background-image: url('/background/mountains-main.png');
+    height: 985px;
+    position: absolute;
+    width: 100%;
+    background-size: cover;
+    z-index: -1;
+  };
+
+  &-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .title{
+      font-weight: 400;
+      font-size: 50px;
+      line-height: 150%;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    };
+
+    .tour-selection {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      height: 161px;
+      margin-bottom: 82px;
+      backdrop-filter: blur(6px);
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .form-control {
+          width: 270px;
+          height: 52px;
+          border: 1px solid rgba(253, 253, 253, 0.4);
+          padding: 5px;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.2);
+          color: var(--white-color);
+          cursor: pointer;
+
+            &::placeholder {
+             color: var(--white-color);
+            };
+            
+            option {
+              color: var(--black-color);
+              cursor: pointer;
+            };
+            .calendar-wrapper {
+              position: relative;
+            };
+        };
+
+        .calendar-wrapper {
+          position: relative;
+        };
+
+        .calendar-wrapper::after {
+          content: "";
+          position: absolute;
+          right: 18px;
+          top: 16px;
+          width: 18px;
+          height: 18px;
+          pointer-events: none;
+          background-image: url('/images/date-icon.svg');
+          background-repeat: no-repeat;
+          background-size: contain;
+        };
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: auto;
+          height: auto;
+          color: transparent;
+          background: transparent;
+        };
+
+        input[type="date"]::-moz-calendar-picker-indicator {
+          opacity: 0;
+        };
+       
+        .label-text {
+          color: var(--white-color);
+          padding-left: 8px;
+        };
+      };
+
+      .find-program-btn {
+        display:block;
+        margin-bottom: 25px;
+        width: 213px;
+        height: 52px;
+        border-radius: 4px;
+        cursor: pointer;
+      };
+    };
+  };
+};

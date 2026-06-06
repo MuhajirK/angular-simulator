@@ -1,1 +1,58 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header>
+  <div class="container white-text header-info">
+    <div class="logotip">
+      <img src="/images/logo-icon.svg" alt="logo Румтибет">
+      <p class="firm-logo fs-16">{{firmName}}</p>
+    </div>
+    <nav class="nav-wrapper white-text fs-18 semi-bold">
+      <a href="">Главная</a>
+      <a href="">Про гида</a>
+      <a href="">Программа тура</a>
+      <a href="">Стоимость</a>
+      <a href="">Блог</a>
+      <a href="">Контакты</a>
+    </nav>
+    <button id="consultation-btn" class="fs-16 semi-bold">Консультация</button>
+  </div>
+</header>
+<section class="main-info">
+  <div class="banner"> </div>
+  <div class="main-info-title">
+    <H1 class="title white-text">Насладись прогулкой в горах<br>с командой единомышленников</H1>
+    <form class="container tour-selection">
+      <div class="form-group">
+        <select id="tour-select" class="form-control" required>
+          <option value="">Локация тура</option>
+          <option value="1">Дагестан</option>
+          <option value="2">Адыгея</option>
+          <option value="3">Алтай</option>
+          <option value="4">Урал</option>
+        </select>
+        <label for="tour-select" class="label-text fs-14">Выберите из списка</label>
+      </div>
+      <div class="form-group">
+        <div class="date-input-container calendar-wrapper">
+          <input
+            placeholder="Дата похода"
+            type="text"
+            id="date-picker"
+            class="form-control date-input calendar-wrapper semi-bold"
+            onfocus="(type='Date')"
+            onblur="(type='text')">
+        </div>
+        <label for="date-picker" class="label-text fs-14">Укажите дату</label>
+      </div>
+      <div class="form-group">
+        <select id="tour-select" class="form-control" required>
+          <option value="">Участники</option>
+          <option value="1">Участник 1</option>
+          <option value="2">Участник 2</option>
+          <option value="3">Участник 3</option>
+          <option value="4">Участник 4</option>
+        </select>
+        <label for="tour-select" class="label-text fs-14">Выберите из списка</label>
+      </div>
+      <button type="submit" class="find-program-btn fs-14 semi-bold white-text back-color-btn">Найти программу</button>
+    </form>
+  </div>
+</section>
