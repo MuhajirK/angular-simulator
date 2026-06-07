@@ -1,58 +1,126 @@
-<header>
-  <div class="container white-text header-info">
-    <div class="logotip">
-      <img src="/images/logo-icon.svg" alt="logo Румтибет">
-      <p class="firm-logo fs-16">{{firmName}}</p>
-    </div>
-    <nav class="nav-wrapper white-text fs-18 semi-bold">
-      <a href="">Главная</a>
-      <a href="">Про гида</a>
-      <a href="">Программа тура</a>
-      <a href="">Стоимость</a>
-      <a href="">Блог</a>
-      <a href="">Контакты</a>
-    </nav>
-    <button id="consultation-btn" class="fs-16 semi-bold">Консультация</button>
+@if (isLoading) {
+  <div class="loader-screen">
+         <img src="/images/loading.svg" alt="Загрузка..." class="loader-screen__icon">
   </div>
-</header>
-<section class="main-info">
-  <div class="banner"> </div>
-  <div class="main-info-title">
-    <H1 class="title white-text">Насладись прогулкой в горах<br>с командой единомышленников</H1>
-    <form class="container tour-selection">
-      <div class="form-group">
-        <select id="tour-select" class="form-control" required>
-          <option value="">Локация тура</option>
-          <option value="1">Дагестан</option>
-          <option value="2">Адыгея</option>
-          <option value="3">Алтай</option>
-          <option value="4">Урал</option>
-        </select>
-        <label for="tour-select" class="label-text fs-14">Выберите из списка</label>
+} @else {
+    <header>
+      <div class="live-input">
+        <input [(ngModel)]="inputValue" name="liveInput">
+        <span>{{inputValue}}</span>
       </div>
-      <div class="form-group">
-        <div class="date-input-container calendar-wrapper">
-          <input
-            placeholder="Дата похода"
-            type="text"
-            id="date-picker"
-            class="form-control date-input calendar-wrapper semi-bold"
-            onfocus="(type='Date')"
-            onblur="(type='text')">
+      <div class="container white-text header-info">
+        <div class="logotip">
+          <img src="/images/logo-icon.svg" alt="logo Румтибет">
+          <p class="firm-logo fs-16">{{firmName}}</p>
         </div>
-        <label for="date-picker" class="label-text fs-14">Укажите дату</label>
+        <nav class="nav-wrapper white-text fs-18 semi-bold">
+          <a href="">Главная</a>
+          <a href="">Про гида</a>
+          <a href="">Программа тура</a>
+          <a href="">Стоимость</a>
+          <a href="">Блог</a>
+          <a href="">Контакты</a>
+        </nav>
+        <button id="consultation-btn" class="fs-16 semi-bold">Консультация</button>
+        @if (isDateActive) {
+          <span class="current-date white-text fs-18 semi-bold">{{currentDate | date: 'dd.MM.yyyy HH:mm:ss'}}</span>
+        } @else {
+            <div class="click-counter">
+              <button id="plus-button" (click)="increaseCount()">+</button>
+              <button id="minus-button" [disabled]="clicksCount === 0" (click)="decreaseCount()">-</button>
+              <span class="clicks-count">{{clicksCount}}</span>
+            </div>
+          }
+        <button class="show-task-btn" (click)="showTask()">{{ isDateActive ? 'Показать кликер' : 'Показать дату' }}</button>
       </div>
-      <div class="form-group">
-        <select id="tour-select" class="form-control" required>
-          <option value="">Участники</option>
-          <option value="1">Участник 1</option>
-          <option value="2">Участник 2</option>
-          <option value="3">Участник 3</option>
-          <option value="4">Участник 4</option>
-        </select>
-        <label for="tour-select" class="label-text fs-14">Выберите из списка</label>
+    </header>
+    <section class="main-info">
+      <div class="banner"> </div>
+      <div class="main-info-title">
+        <H1 class="title white-text">Насладись прогулкой в горах<br>с командой единомышленников</H1>
+        <form class="container tour-selection">
+          <div class="form-group">
+            <select id="tour-select" class="form-control" [(ngModel)]="selectedTour" name="location" required>
+              <option value=""selected hidden disabled>Локация для тура</option>
+              <option value="1">Дагестан</option>
+              <option value="2">Адыгея</option>
+              <option value="3">Алтай</option>
+              <option value="4">Урал</option>
+            </select>
+            <label for="tour-select" class="label-text fs-14">Выберите из списка</label>
+          </div>
+          <div class="form-group">
+            <div class="date-input-container calendar-wrapper">
+              <input
+                placeholder="Дата похода"
+                type="text"
+                id="date-picker"
+                [(ngModel)]="selectedDate"
+                name="date"
+                class="form-control date-input calendar-wrapper semi-bold"
+                onfocus="type='Date'"
+                onblur="if (!value) type='text'">
+            </div>
+            <label for="date-picker" class="label-text fs-14">Укажите дату</label>
+          </div>
+          <div class="form-group">
+            <select id="tour-select" class="form-control" [(ngModel)]="selectedParticipant" name="participants" required>
+              <option value=""selected hidden disabled>Участники</option>
+              <option value="1">Участник 1</option>
+              <option value="2">Участник 2</option>
+              <option value="3">Участник 3</option>
+              <option value="4">Участник 4</option>
+            </select>
+            <label for="tour-select" class="label-text fs-14">Выберите из списка</label>
+          </div>
+          <button type="submit" class="find-program-btn fs-14 semi-bold white-text back-color-btn" [disabled]= "isNotValid()">Найти программу</button>
+        </form>
       </div>
-      <button type="submit" class="find-program-btn fs-14 semi-bold white-text btn-back-color">Найти программу</button>
-    </form>
-  </div>
-</section>
+    </section>
+    <section class="about-hike">
+      <div class="container about-hike-container">
+        <div class="about-hike-images">
+          <img src="/images/mountаin-for-hike.png" class="mountаin-for-hike" alt="Вершина горы">
+          <div class="house-in-mountаins">
+            <img src="/images/circle.png" class="circle-for-play">
+            <img src="/images/play.png" class="play-btn" alt="Воспроизвети видео">
+          </div>
+        </div>
+        <div class="hike-info">
+          <p class="hike-title secondary-color secondary-color fs-24">о нашем походе</p>
+          <h2 class="hike-subtitle extra-bold fs-32">Исследуйте все горные массивы<br>мира вместе с нами</h2> 
+          <span class="hike-description regular fs-18">Его корни уходят в один фрагмент классической латыни 45 года <br> н.э.,
+            то есть более двух тысячелетий назад. Ричард МакКлинток,<br> профессор латыни из колледжа Hampden-Sydney, штат<br> 
+            Вирджиния, взял одно из самых странных слов в Lorem Ipsum,<br> "consectetur" и занялся его поисками в классической латинской<br> литературе.
+          </span>
+          <button class="back-color-btn tour-program-btn white-text" id="tour-program-btn">Программа тура</button>
+        </div>
+      </div>
+    </section>
+    <section class="best-tour-programs">
+      <div class="programs-info">
+        <p class="programs-title secondary-color secondary-color fs-24">наше предложение</p>
+        <h2 class="programs-subtitle extra-bold fs-32">Лучшие программы для тебя</h2> 
+        <span class="programs-description regular fs-18">Его корни уходят в один фрагмент классической латыни 45 года<br>
+            н.э., то есть более двух тысячелетий назад. Ричард МакКлинток,<br> профессор латыни из колледжа.
+        </span>
+        <div class="program-features-list">
+          @for(feature of features; track feature.id) {
+            <div class="features"[class.active-feature]="feature.id === focusedFeatureId" (mouseover)="focusedFeature(feature.id)">
+              <img [src] = feature.icon alt="Особенности программы" width="50px" height="50px">
+              <div class="features-info">
+                <h3 class="features-info-title bold fs-18">{{feature.title}}</h3>
+                <p class="features-info-description regular fs-14">{{feature.description}}</p>
+              </div>
+            </div>
+          }
+        </div>
+        <button class="back-color-btn program-price-btn white-text" id="tour-program-btn">Стимость праграмм</button>
+      </div>
+      <div class="program-features-images">
+        @for(featureImage of programFeatureImages; track featureImage.id) {
+          <img [src] = featureImage.image alt="Программа для тебя">
+        }
+      </div>
+    </section>
+  }
