@@ -1,6 +1,6 @@
 @if (isLoading) {
   <div class="loader-screen">
-         <img src="/images/loading.svg" alt="Загрузка..." class="loader-screen__icon">
+         <img src="/images/loading.svg" alt="Загрузка..." class="loader-screen-icon">
   </div>
 } @else {
     <header>
@@ -31,7 +31,7 @@
               <span class="clicks-count">{{clicksCount}}</span>
             </div>
           }
-        <button class="show-task-btn" (click)="showTask()">{{ isDateActive ? 'Показать кликер' : 'Показать дату' }}</button>
+        <button id="show-task-btn" (click)="showTask()">{{ isDateActive ? 'Показать кликер' : 'Показать дату' }}</button>
       </div>
     </header>
     <section class="main-info">

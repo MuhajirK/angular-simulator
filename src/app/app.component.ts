@@ -74,6 +74,7 @@ export class AppComponent {
   constructor(){
     this.isBasicColor(Colors.BLACK);
     this.saveVisit();
+    this.startTimer()
 
     setTimeout(() => {
       this.isLoading = false;
@@ -88,7 +89,7 @@ export class AppComponent {
     this.focusedFeatureId = featureId;
   };
 
-  startTimer() {
+  private startTimer() {
     setInterval(() => {
         this.currentDate = new Date()
     }, 1000);
@@ -104,9 +105,6 @@ export class AppComponent {
 
   showTask() {
     this.isDateActive = !this.isDateActive;
-    if (this.isDateActive) {
-      this.startTimer();
-    };
   };
 
 

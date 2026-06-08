@@ -16,7 +16,7 @@
   width: 200px;
   height: 200px;
 
-  &__icon {
+  &-icon {
     width: 100%;
     height: 100%;
     animation: rotate-loader 1.5s linear infinite; 
@@ -68,6 +68,15 @@ header {
       cursor: pointer;
     };
 
+    #show-task-btn {
+      background-color: var(--white-color);
+      border-radius: 5px;
+      height: 44px;
+      width: 158px;
+      border: none;
+      cursor: pointer;
+    }
+
     .nav-wrapper {
       display: inline-flex;
       justify-content:space-around; 
@@ -82,21 +91,11 @@ header {
           color: var(--white-color);
           text-decoration: none;
         };
+      };
 
     .current-date {
-      position: absolute;
       top: 52px;
       right: 350px;
-    };
-
-    .show-task-btn {
-      background-color: var(--white-color);
-      border-radius: 5px;
-      height: 44px;
-      width: 158px;
-      border: none;
-      cursor: pointer;
-    }
     };
   
     .click-counter {
