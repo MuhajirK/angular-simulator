@@ -1,20 +1,43 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 5770cc0305ec2ba6cb07fc36bf5b2e75b08ee4f4
 * {
   box-sizing: border-box;
 };
 
+@mixin base-justify {
+  display: flex;
+  justify-content: center;
+}
+
+.loader-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+
+  &-icon {
+    width: 100%;
+    height: 100%;
+    animation: rotate-loader 1.5s linear infinite; 
+  }
+}
+
+@keyframes rotate-loader {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+
 header {
-  position: fixed;
+  position: relative;
   width: 100%;
   background-color: rgba(24, 18, 30, 0.5);
   height: 120px;
-  display: flex;
-  justify-content: center;
+  @include base-justify;
   align-items: center;
- 
+  z-index: 1000;
+  gap: 20px;
+  
     .logotip {
       display: flex;
       flex-direction: column;
@@ -41,11 +64,17 @@ header {
       height: 44px;
       width: 158px;
       border: none;
-<<<<<<< HEAD
       cursor: pointer;
-=======
->>>>>>> 5770cc0305ec2ba6cb07fc36bf5b2e75b08ee4f4
     };
+
+    #show-task-btn {
+      background-color: var(--white-color);
+      border-radius: 5px;
+      height: 44px;
+      width: 158px;
+      border: none;
+      cursor: pointer;
+    }
 
     .nav-wrapper {
       display: inline-flex;
@@ -55,21 +84,34 @@ header {
       height: 25px;
       width: 625px;
       line-height: 100%;
-<<<<<<< HEAD
       cursor: pointer;
-=======
->>>>>>> 5770cc0305ec2ba6cb07fc36bf5b2e75b08ee4f4
         
         a {
           color: var(--white-color);
           text-decoration: none;
         };
+      };
+
+    .current-date {
+      top: 52px;
+      right: 350px;
     };
+  
+    .click-counter {
+      @include base-justify;
+      align-items: center;
+      gap: 5px;
+    };
+
+    .live-input {
+      @include base-justify;
+      flex-direction: column;
+      gap: 10px;
+    }
 };
 
 .main-info {
-  display: flex;
-  justify-content: center;
+  @include base-justify;
   align-items: end;
   height: 985px;
 
@@ -96,8 +138,7 @@ header {
     };
 
     .tour-selection {
-      display: flex;
-      justify-content: center;
+      @include base-justify;
       align-items: center;
       gap: 24px;
       background: rgba(255, 255, 255, 0.2);
@@ -119,10 +160,7 @@ header {
           border-radius: 8px;
           background: rgba(255, 255, 255, 0.2);
           color: var(--white-color);
-<<<<<<< HEAD
           cursor: pointer;
-=======
->>>>>>> 5770cc0305ec2ba6cb07fc36bf5b2e75b08ee4f4
 
             &::placeholder {
              color: var(--white-color);
@@ -130,11 +168,10 @@ header {
             
             option {
               color: var(--black-color);
-<<<<<<< HEAD
               cursor: pointer;
-=======
->>>>>>> 5770cc0305ec2ba6cb07fc36bf5b2e75b08ee4f4
+              cursor: pointer;
             };
+          
             .calendar-wrapper {
               position: relative;
             };
@@ -185,11 +222,192 @@ header {
         width: 213px;
         height: 52px;
         border-radius: 4px;
-<<<<<<< HEAD
         cursor: pointer;
-=======
->>>>>>> 5770cc0305ec2ba6cb07fc36bf5b2e75b08ee4f4
+        cursor: pointer;
       };
     };
   };
 };
+
+.about-hike {
+  display: flex;
+  height: 726px;
+  
+  &-container {
+    height: 526px;
+    margin: 100px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+  };
+
+  .about-hike-images {
+    position: relative;
+    width: 480px;
+    height: 526px;
+
+    .mountаin-for-hike {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    };
+
+    .house-in-mountаins {
+      position: absolute;
+      background-image: url(/images/house-in-mountаins.png);
+      width: 350px;
+      height: 400px;
+      bottom: 0;
+      right: 0;
+
+      .circle-for-play,
+      .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      };
+
+      .circle-for-play {
+        max-width: 100%;
+        max-height: 100%;
+        z-index: 0;
+      };
+
+      .play-btn {
+        max-width: 100%;
+        max-height: 100%;
+        z-index: 1;
+        cursor: pointer;
+      };
+    };
+  };
+
+  .hike-info {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0px auto ;
+    min-width: 580px;
+    height: 398px;
+
+    .hike-title {
+      display:block;
+      margin: 0;
+      line-height: 20px;
+    };
+
+    .hike-subtitle {
+      margin: 8px auto 40px 0;
+      line-height: 120%;
+      letter-spacing: 0px;
+    };
+
+    .hike-description {
+      margin-bottom: 40px;
+      line-height: 150%;
+    };
+
+    .tour-program-btn {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 200px;
+      height: 52px;
+      border-radius: 4px;
+      cursor: pointer;
+    };
+  };
+};
+
+.best-tour-programs {
+  @include base-justify;
+  justify-self:center;
+  background-color: #F3F5F4;
+  width: 100%;
+  height: 771px;
+  gap: 90px;
+
+  .programs-info {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 580px;
+    max-height: 591px;
+    top: 80px;
+
+    .programs-title {
+      display:block;
+      margin: 0;
+      line-height: 20px;
+    };
+
+    .programs-subtitle {
+      margin: 8px auto 40px 0;
+      line-height: 120%;
+      letter-spacing: 0px;
+    };
+
+    .programs-description {
+      margin-bottom: 40px;
+      line-height: 150%;
+    };
+
+    .program-features-list {
+      @include base-justify;
+      flex-direction: column;
+      gap: 40px;
+
+      .features {
+        @include base-justify;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+      }
+
+      .active-feature {
+        background-color: rgba(94, 156, 66, 0.4);
+        border: 1px solid #b4133c;
+      }
+
+      .features-info {
+        @include base-justify;
+        flex-direction: column;
+        gap: 4px;
+
+        &-title {
+          margin: 0;
+          line-height: 20px;
+        }
+
+        &-description {
+          margin: 0;
+          line-height: 20px;
+          color: #000000;
+
+        }
+      }
+    }
+
+    .program-price-btn {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 236px;
+      height: 52px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+  .program-features-images {
+    @include base-justify;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 510px;
+    max-height: 510px;
+    margin-top: 120px;
+    cursor: pointer;
+  }
+}

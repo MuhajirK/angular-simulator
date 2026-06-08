@@ -13,7 +13,8 @@
 :root {
   --white-color: rgba(253, 253, 253, 1);
   --secondary-color: #F2BE22;
-  --black-color: rgba(24, 18, 30, 1);
+  --black-color: #18121E;
+;
   --btn-color: rgba(26, 62, 62, 1);
 };
 
@@ -25,9 +26,17 @@
   color: var(--black-color);
 };
 
-.btn-back-color {
+.secondary-color {
+  color: var(--secondary-color);
+};
+
+.back-color-btn {
   background-color: var(--btn-color);
 };
+
+.regular {
+  font-weight: 400;
+}
 
 .semi-bold {
   font-weight: 600;
@@ -35,6 +44,10 @@
 
 .bold {
   font-weight: 700;
+};
+
+.extra-bold {
+  font-weight: 800;
 };
 
 .fs-14 {
@@ -47,4 +60,12 @@
 
 .fs-18 {
   font-size: 18px;
+};
+
+.fs-24 {
+  font-size: 24px;
+};
+
+.fs-32 {
+  font-size: 32px;
 };
