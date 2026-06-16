@@ -18,6 +18,14 @@ export class LocalStorageService {
     return JSON.parse(data) as T;
   };
 
+  removeItem(key: string): void {
+    localStorage.removeItem(key);
+  }
+
+  clearAll(): void {
+    localStorage.clear();
+  }
+
   getVisitCount(): number | null {
     return this.getItem<number>(this.VISIT_COUNT);
   };
