@@ -1,23 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import './training';
 import {Colors} from '../enums/Color';
 import './collection';
 import { Ifeatures, IprogramFeatures } from '../interfaces/IFeatures';
 import { FormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgTemplateOutlet } from '@angular/common';
+import { Ipopular } from '../interfaces/IPopular';
+import { Iposts } from '../interfaces/IPosts';
+import { IMessages } from '../interfaces/IMessages';
+import { MessageStatus } from '../enums/Messages'
+import { MessagesControlService } from '../messages-control.service'
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   firmName: string = 'румтибет';
-  private readonly LAST_VISIT_DATE: string = 'lastVisitDate';
-  private readonly VISIT_COUNT: string = 'visitCount';
-
   
+
   // ДЗ 16 №1 Для вёрстки блока №2 используйте конструкцию @for. Добавить анимацию при наведении на блоки
   
   focusedFeatureId: number = 0;
@@ -29,6 +33,15 @@ export class AppComponent {
   isDateActive: boolean = true;
   inputValue: string = '';
   isLoading: boolean = true;
+  focusedBlog: number = 0;
+  focusedArticle: number = 0;
+  
+  
+  // ДЗ 17
+
+  messages: IMessages[] = [];
+  public messagesControlService = inject(MessagesControlService);
+  private storage = inject(LocalStorageService);
 
 
   features: Ifeatures[] = [
@@ -71,14 +84,85 @@ export class AppComponent {
     }
   ];
 
+  popularImages: Ipopular[] = [
+    {
+      id: 1,
+      image: '/images/lake-near-mountains.png',
+      title: 'Озеро возле гор',
+      subtitle: 'романтическое приключение',
+      starImage: '/images/star.svg',
+      gradeValue: 4.9,
+      prise: 480
+    },
+    {
+      id: 2,
+      image: '/images/night-in-mountains.png',
+      title: 'Ночь в горах',
+      subtitle: 'в компании друзей',
+      starImage: '/images/star.svg',
+      gradeValue: 4.5,
+      prise: 500
+    },
+    {
+      id: 3,
+      image: '/images/stretching-in-mountains.png',
+      title: 'Растяжка в горах',
+      subtitle: 'для тех, кто забоится о себе',
+      starImage: '/images/star.svg',
+      gradeValue: 5.0,
+      prise: 230
+    }
+  ];
+
+  blogPosts: Iposts[] = [
+    {
+      id: 1,
+      image: '/images/italy-image.png',
+      title: 'Красивая Италия, какая она в реальности?',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      postDate: this.currentDate.toLocaleDateString(),
+      articleInfo: 'читать статью'
+    },
+    {
+      id: 2,
+      image: '/images/plane-over-sea.png',
+      title: 'Долой сомнения! Весь мир открыт для вас!',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
+      postDate: this.currentDate.toLocaleDateString('ru-RU').replace(/\./g, '/'),
+      articleInfo: 'читать статью'
+    },
+    {
+      id: 3,
+      image: '/images/traveling-alone.png',
+      title: 'Как подготовиться к путешествию в одиночку? ',
+      description: 'Для современного мира базовый вектор развития предполагает.',
+      postDate: this.currentDate.toLocaleDateString(),
+      articleInfo: 'читать статью'
+    },
+    {
+      id: 4,
+      image: '/images/taj-mahal.png',
+      title: 'Индия ... летим?',
+      description: 'Для современного мира базовый.',
+      postDate: this.currentDate.toLocaleDateString(),
+      articleInfo: 'читать статью'
+    },
+  ];
+
   constructor(){
     this.isBasicColor(Colors.BLACK);
-    this.saveVisit();
-    this.startTimer()
+    this.storage.saveVisit();
+    this.startTimer();
 
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 300);
+  };
+
+  ngOnInit(): void {
+    this.messagesControlService.registrOnChanges(() => {
+      this.messages = this.messagesControlService.getMessages()
+    });
   };
 
   isNotValid(): boolean {
@@ -112,25 +196,38 @@ export class AppComponent {
 
   private isBasicColor(color: Colors): boolean{
     return (color === Colors.RED || color === Colors.GREEN || color === Colors.BLUE);
-  }
-  
-  
-  // ДЗ 15 №3-4 создать метод, который сохраняет в локальное хранилище дату последнего захода и количество посещений
-
-  private saveVisit(): void {
-    const currentDate = new Date().toLocaleString();
-    localStorage.setItem(this.LAST_VISIT_DATE, currentDate);
-    const savedCount = this.getVisitCount();
-    if (savedCount !== null) {
-      const newCount: number = Number(savedCount) + 1;
-      localStorage.setItem(this.VISIT_COUNT, String(newCount));
-    }
-    else {
-      localStorage.setItem(this.VISIT_COUNT, '1');
-    };
   };
 
-  private getVisitCount(): string|null {
-    return localStorage.getItem(this.VISIT_COUNT);
+  focusedTitle(blogPostId: number) {
+    this.focusedBlog = blogPostId;
+  };
+
+  focusedArticleLink(blogPostId: number) {
+    this.focusedArticle = blogPostId;
+  };
+
+  clearHighlight() {
+    this.focusedBlog = 0;
+    this.focusedArticle = 0;
+  };
+
+  onFindProgramClick() {
+    this.messagesControlService.addMessage('Программа недоступна', MessageStatus.WARN);
+  };
+
+  onProgramPriceClick() {
+    this.messagesControlService.addMessage('Стоимость отправлена на почту', MessageStatus.INFO);
+  };
+
+  onRatingsClick() {
+    this.messagesControlService.addMessage('Направления получены', MessageStatus.SUCCESS);
+  };
+
+  onMaterialsClick() {
+    this.messagesControlService.addMessage('Материалы недоступны', MessageStatus.ERROR);
+  };
+
+  onCloseMessage(msgid: number){
+    this.messagesControlService.closeMessage(msgid);
   };
 };
