@@ -1,0 +1,29 @@
+
+<header>
+  <div class="live-input">
+    <input [(ngModel)]="inputValue" name="liveInput">
+    <span>{{inputValue}}</span>
+  </div>
+  <div class="container white-text header-info">
+    <div class="logotip">
+      <img src="/images/logo-icon.svg" alt="logo Румтибет">
+      <p class="firm-logo fs-16">{{firmName}}</p>
+    </div>
+    <nav class="nav-wrapper white-text fs-18 semi-bold">
+      @for(link of navLinks; track link.id) {
+        <a class="white-text" [routerLink] = link.path [routerLinkActive]="'active-link'" [routerLinkActiveOptions]="{exact: true}">{{link.title}}</a>
+      }
+    </nav>
+    <button id="consultation-btn" class="fs-16 semi-bold">Консультация</button>
+    @if (isDateActive) {
+      <span class="current-date white-text fs-18 semi-bold">{{currentDate | date: 'dd.MM.yyyy HH:mm:ss'}}</span>
+    } @else {
+        <div class="click-counter">
+          <button id="plus-button" (click)="increaseCount()">+</button>
+          <button id="minus-button" [disabled]="clicksCount === 0" (click)="decreaseCount()">-</button>
+          <span class="clicks-count">{{clicksCount}}</span>
+        </div>
+      }
+    <button id="show-task-btn" (click)="showTask()">{{ isDateActive ? 'Показать кликер' : 'Показать дату' }}</button>
+  </div>
+</header>

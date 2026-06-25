@@ -25,7 +25,7 @@ export class MessagesControlService {
         return this.messages
     };
 
-    addMessage(text: string, type: MessageStatus): void {
+    private addMessage(text: string, type: MessageStatus): void {
         const newId = Date.now();
         const newMessage = {
             id: newId,
@@ -44,4 +44,25 @@ export class MessagesControlService {
         this.messages = this.messages.filter(msg => msg.id !== id);
         this.notifyOfChanges();
     };
+
+    showWarn (text: string) {
+        this.addMessage(text, MessageStatus.WARN);
+        this.notifyOfChanges();
+    };
+
+    showError (text: string) {
+        this.addMessage(text, MessageStatus.ERROR);
+        this.notifyOfChanges();
+    };
+
+    showSuccess (text: string) {
+        this.addMessage(text, MessageStatus.SUCCESS);
+        this.notifyOfChanges();
+    };
+
+    showInfo (text: string) {
+        this.addMessage(text, MessageStatus.INFO);
+        this.notifyOfChanges();
+    };
+
 };

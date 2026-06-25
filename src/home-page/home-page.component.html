@@ -1,0 +1,166 @@
+<section class="main-info">
+  <div class="banner"> </div>
+  <div class="main-info-title">
+    <H1 class="title white-text">Насладись прогулкой в горах<br>с командой единомышленников</H1>
+    <form class="container tour-selection">
+      <div class="form-group">
+        <select id="tour-select" class="form-control" [(ngModel)]="selectedTour" name="location" required>
+          <option value=""selected hidden disabled>Локация для тура</option>
+          <option value="1">Дагестан</option>
+          <option value="2">Адыгея</option>
+          <option value="3">Алтай</option>
+          <option value="4">Урал</option>
+        </select>
+        <label for="tour-select" class="label-text fs-14">Выберите из списка</label>
+      </div>
+      <div class="form-group">
+        <div class="date-input-container calendar-wrapper">
+          <input
+            placeholder="Дата похода"
+            type="text"
+            id="date-picker"
+            [(ngModel)]="selectedDate"
+            name="date"
+            class="form-control date-input calendar-wrapper semi-bold"
+            onfocus="type='Date'"
+            onblur="if (!value) type='text'">
+        </div>
+        <label for="date-picker" class="label-text fs-14">Укажите дату</label>
+      </div>
+      <div class="form-group">
+        <select id="tour-select" class="form-control" [(ngModel)]="selectedParticipant" name="participants" required>
+          <option value=""selected hidden disabled>Участники</option>
+          <option value="1">Участник 1</option>
+          <option value="2">Участник 2</option>
+          <option value="3">Участник 3</option>
+          <option value="4">Участник 4</option>
+        </select>
+        <label for="tour-select" class="label-text fs-14">Выберите из списка</label>
+      </div>
+      <button type="submit" class="find-program-btn fs-14 semi-bold white-text button-values" [disabled]= "isNotValid()">Найти программу</button>
+    </form>
+  </div>
+</section>
+<section class="about-hike">
+  <div class="container about-hike-container">
+    <div class="about-hike-images">
+      <img src="/images/mountаin-for-hike.png" class="mountаin-for-hike" alt="Вершина горы">
+      <div class="house-in-mountаins">
+        <img src="/images/circle.png" class="circle-for-play">
+        <img src="/images/play.png" class="play-btn" alt="Воспроизвети видео">
+      </div>
+    </div>
+    <div class="hike-info">
+      <p class="section-title hike-title secondary-color regular fs-24">о нашем походе</p>
+      <h2 class="section-subtitle hike-subtitle extra-bold fs-32">Исследуйте все горные массивы<br>мира вместе с нами</h2> 
+      <span class="hike-description regular fs-18">Его корни уходят в один фрагмент классической латыни 45 года <br> н.э.,
+        то есть более двух тысячелетий назад. Ричард МакКлинток,<br> профессор латыни из колледжа Hampden-Sydney, штат<br> 
+        Вирджиния, взял одно из самых странных слов в Lorem Ipsum,<br> "consectetur" и занялся его поисками в классической латинской<br> литературе.
+      </span>
+      <button class="button-values tour-program-btn white-text" id="tour-program-btn" (click)="onFindProgramClick()">Программа тура</button>
+    </div>
+  </div>
+</section>
+<section class="best-tour-programs">
+  <div class="programs-info">
+    <p class="section-title programs-title regular fs-24">наше предложение</p>
+    <h2 class="section-subtitle programs-subtitle extra-bold fs-32">Лучшие программы для тебя</h2> 
+    <span class="programs-description regular fs-18">Его корни уходят в один фрагмент классической латыни 45 года<br>
+        н.э., то есть более двух тысячелетий назад. Ричард МакКлинток,<br> профессор латыни из колледжа.
+    </span>
+    <div class="program-features-list">
+      @for(feature of features; track feature.id) {
+        <div class="features"[class.active-feature]="feature.id === focusedFeatureId" (mouseover)="focusedFeature(feature.id)">
+          <img [src] = feature.icon alt="Особенности программы" width="50px" height="50px">
+          <div class="features-info">
+            <h3 class="features-info-title bold fs-18">{{feature.title}}</h3>
+            <p class="features-info-description regular fs-14">{{feature.description}}</p>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="button-values program-price-btn white-text" id="tour-program-btn" (click)="onProgramPriceClick()">Стоимость программ</button>
+  </div>
+  <div class="program-features-images">
+    @for(featureImage of programFeatureImages; track featureImage.id) {
+      <img [src] = featureImage.image alt="Программа для тебя">
+    }
+  </div>
+</section>
+<section class="popular-destinations">
+  <div class="popular-info">
+    <p class="section-title popular-info-title regular fs-24">по версии отдыхающих</p>
+    <h2 class="section-subtitle popular-info-subtitle extra-bold fs-32">Популярные направления</h2> 
+  </div>
+  <div class="container popular-images">
+    @for(popularImage of popularImages; track popularImage.id) {
+      <div class="popular-images-container">
+        <img class="tour-image"  [src] = popularImage.image alt = "Популярные направления">
+        <div class="popular-grade">
+          <div class="popular-grade-container">
+            <img [src] = popularImage.starImage alt = "Звездочка">
+            <span class="popular-grade-value bold fs-14">{{popularImage.gradeValue.toFixed(1)}}</span> 
+          </div>
+        </div>
+        <div class ="image-description">
+          <p class="title bold fs-24 white-text">{{popularImage.title}}</p>
+          <span class="subtitle regular fs-14 white-text">{{popularImage.subtitle}}</span>
+          
+        </div>
+        <div class="image-prise bold fs-20 white-text">{{popularImage.prise}} $</div>
+      </div>
+    }
+  </div>
+  <button class="button-values rating-btn" id="rating-btn" (click)="onRatingsClick()">Рейтинг направлений</button>
+</section>
+
+<section class="tour-blogs">
+
+  <div class="blogs-info">
+    <p class="section-title blogs-info-title regular fs-24">делимся впечатлениями</p>
+    <h2 class="section-subtitle blogs-info-subtitle extra-bold fs-32">Блог о путешественниках</h2> 
+  </div>
+  <div class="container blog-posts">
+    @for(blogPost of blogPosts; track blogPost.id) {
+      <div class="post-container">
+        <img [src] = blogPost.image alt = 'Фото поста' width="230px" height="280px">
+        <div class="post-info">
+          <p 
+            class="title bold fs-24 black-text"
+            [class.highlighted-line]="blogPost.id === focusedBlog"
+            (mouseover)="focusedTitle(blogPost.id)"
+            (mouseout)="clearHighlight()"
+          >
+            {{blogPost.title}}
+          </p>
+          <span class="description regular fs-14 black-text">{{blogPost.description}}</span>
+          <div class="article-info bold fs-14">
+            <span class="post-date-info secondary-color">{{blogPost.postDate}}</span>
+            <span class="article-link"
+              [class.highlighted-line]="blogPost.id === focusedArticle"
+                (mouseover)="focusedArticleLink(blogPost.id)"
+                (mouseout)="clearHighlight()"
+            >
+              {{blogPost.articleInfo}}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <button class="button-values other-info-btn" id="other-info-btn" (click)="onMaterialsClick()">Другие материалы</button>
+</section>
+<section class="photo-report">
+  <div class="photo-report-info">
+    <p class="section-title photo-report-info-title regular fs-24">фото отчет</p>
+    <h2 class="section-subtitle photo-report-info-subtitle extra-bold fs-32">Делимся впечатлениями</h2> 
+  </div>
+  <div class="photo-report-images">
+    <div class="container photo-report-images">
+      @for(photoReportImage of photoReportImages; track photoReportImage.id) {
+        <img [src] = photoReportImage.photoImage alt="Делимся впечатлениями">
+      }
+    </div>
+  </div>
+  <button class="button-values our-pinterest-btn" id="our-pinterest-btn">Наш Pinterest</button>
+</section>

@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+};
+
+
+@mixin base-justify {
+  display: flex;
+  justify-content: center;
+};
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(24, 18, 30, 0.5);
+  height: 120px;
+  @include base-justify;
+  align-items: center;
+  z-index: 1000;
+  gap: 20px;
+  
+    .logotip {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 132px;
+    };
+
+    .firm-logo {
+      margin: 0 auto;
+      text-transform: uppercase;
+      text-align: justify;
+      letter-spacing: 7px;
+    };
+
+    .header-info {
+      display: flex;
+      gap: 130px;
+      align-items: center;
+    };
+
+    #consultation-btn {
+      background-color: var(--white-color);
+      border-radius: 4px;
+      height: 44px;
+      width: 158px;
+      border: none;
+      cursor: pointer;
+    };
+
+    #show-task-btn {
+      background-color: var(--white-color);
+      border-radius: 5px;
+      height: 44px;
+      width: 158px;
+      border: none;
+      cursor: pointer;
+    };
+
+    .nav-wrapper {
+      display: inline-flex;
+      justify-content:space-around; 
+      align-items: center;
+      gap: 23px;
+      height: 25px;
+      min-width: 625px;
+      line-height: 100%;
+      cursor: pointer;
+        
+      .active-link {
+          color: rgb(33, 24, 151);
+          text-decoration: underline;
+        };
+      };
+
+    .current-date {
+      top: 52px;
+      right: 350px;
+    };
+  
+    .click-counter {
+      @include base-justify;
+      align-items: center;
+      gap: 5px;
+    };
+
+    .live-input {
+      @include base-justify;
+      flex-direction: column;
+      gap: 10px;
+    };
+};
