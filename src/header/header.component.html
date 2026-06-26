@@ -11,7 +11,7 @@
     </div>
     <nav class="nav-wrapper white-text fs-18 semi-bold">
       @for(link of navLinks; track link.id) {
-        <a class="white-text" [routerLink] = link.path [routerLinkActive]="'active-link'" [routerLinkActiveOptions]="{exact: true}">{{link.title}}</a>
+        <a class="white-text" [routerLink] = "link.path" [routerLinkActive]="'active-link'" [routerLinkActiveOptions]="{exact: true}">{{link.title}}</a>
       }
     </nav>
     <button id="consultation-btn" class="fs-16 semi-bold">Консультация</button>

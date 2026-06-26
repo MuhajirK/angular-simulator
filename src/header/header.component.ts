@@ -16,6 +16,7 @@ export class HeaderComponent {
   currentDate: Date = new Date();
   clicksCount: number = 0;
   isDateActive: boolean = true;
+  private TimerId: ReturnType<typeof setInterval> | null = null;
 
   navLinks: ILinks[] = [
     {
@@ -30,24 +31,33 @@ export class HeaderComponent {
     }
   ];
 
-  constructor(){
-      
+  ngOnInit(): void {
     this.startTimer();
-  
+  };
+
+  ngOnDestroy() {
+    this.stopTimer();
   };
      
   private startTimer() {
-    setInterval(() => {
+    this.TimerId = setInterval(() => {
         this.currentDate = new Date()
     }, 1000);
   };
 
-  increaseCount():number {
-    return this.clicksCount ++;
+  private stopTimer() {
+    if (this.TimerId) {
+      clearInterval(this.TimerId);
+      this.TimerId = null;
+    };
   };
 
-  decreaseCount():number {
-    return this.clicksCount --;
+  increaseCount():void {
+    this.clicksCount ++;
+  };
+
+  decreaseCount():void {
+    this.clicksCount --;
   };
 
   showTask() {
