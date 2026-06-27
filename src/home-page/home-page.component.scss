@@ -1,0 +1,532 @@
+* {
+  box-sizing: border-box;
+};
+
+@mixin base-justify {
+  display: flex;
+  justify-content: center;
+};
+
+.main-info {
+  @include base-justify;
+  align-items: end;
+  height: 985px;
+
+  .banner {
+    background-image: url('/background/mountains-main.png');
+    height: 985px;
+    position: absolute;
+    width: 100%;
+    background-size: cover;
+    z-index: -1;
+  };
+
+  &-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .title{
+      font-weight: 400;
+      font-size: 50px;
+      line-height: 150%;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    };
+
+    .tour-selection {
+      @include base-justify;
+      align-items: center;
+      gap: 24px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      height: 161px;
+      margin-bottom: 82px;
+      backdrop-filter: blur(6px);
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .form-control {
+          width: 270px;
+          height: 52px;
+          border: 1px solid rgba(253, 253, 253, 0.4);
+          padding: 5px;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.2);
+          color: var(--white-color);
+          cursor: pointer;
+
+            &::placeholder {
+             color: var(--white-color);
+            };
+            
+            option {
+              color: var(--black-color);
+              cursor: pointer;
+              cursor: pointer;
+            };
+          
+            .calendar-wrapper {
+              position: relative;
+            };
+        };
+
+        .calendar-wrapper {
+          position: relative;
+        };
+
+        .calendar-wrapper::after {
+          content: "";
+          position: absolute;
+          right: 18px;
+          top: 16px;
+          width: 18px;
+          height: 18px;
+          pointer-events: none;
+          background-image: url('/images/date-icon.svg');
+          background-repeat: no-repeat;
+          background-size: contain;
+        };
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: auto;
+          height: auto;
+          color: transparent;
+          background: transparent;
+        };
+
+        input[type="date"]::-moz-calendar-picker-indicator {
+          opacity: 0;
+        };
+       
+        .label-text {
+          color: var(--white-color);
+          padding-left: 8px;
+        };
+      };
+
+      .find-program-btn {
+        display:block;
+        margin-bottom: 25px;
+        width: 213px;
+        height: 52px;
+      };
+    };
+  };
+};
+
+.section-title {
+  display:block;
+  line-height: 20px;
+  color: var(--secondary-color);
+};
+
+.section-subtitle {
+  line-height: 120%;
+  letter-spacing: 0px;
+  color: var(--black-color)
+};
+
+.about-hike {
+  display: flex;
+  height: 726px;
+  
+  &-container {
+    height: 526px;
+    margin: 100px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+  };
+
+  .about-hike-images {
+    position: relative;
+    width: 480px;
+    height: 526px;
+
+    .mountаin-for-hike {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    };
+
+    .house-in-mountаins {
+      position: absolute;
+      background-image: url(/images/house-in-mountаins.png);
+      width: 350px;
+      height: 400px;
+      bottom: 0;
+      right: 0;
+
+      .circle-for-play,
+      .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      };
+
+      .circle-for-play {
+        max-width: 100%;
+        max-height: 100%;
+        z-index: 0;
+      };
+
+      .play-btn {
+        max-width: 100%;
+        max-height: 100%;
+        z-index: 1;
+        cursor: pointer;
+      };
+    };
+  };
+
+  .hike-info {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0px auto ;
+    min-width: 580px;
+    height: 398px;
+
+    .hike-title {
+      margin: 0;
+    };
+
+    .hike-subtitle {
+      margin: 8px auto 40px 0;
+    };
+
+    .hike-description {
+      margin-bottom: 40px;
+      line-height: 150%;
+    };
+
+    .tour-program-btn {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 200px;
+      height: 52px;
+    };
+  };
+};
+
+.best-tour-programs {
+  @include base-justify;
+  justify-self:center;
+  background-color: #F3F5F4;
+  width: 100%;
+  height: 771px;
+  gap: 90px;
+
+  .programs-info {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 580px;
+    max-height: 591px;
+    top: 80px;
+
+    .programs-title {
+      margin: 0;
+    };
+
+    .programs-subtitle {
+      margin: 8px auto 40px 0;
+    };
+
+    .programs-description {
+      margin-bottom: 40px;
+      line-height: 150%;
+    };
+
+    .program-features-list {
+      @include base-justify;
+      flex-direction: column;
+      gap: 40px;
+
+      .features {
+        @include base-justify;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+      };
+
+      .active-feature {
+        background-color: rgba(94, 156, 66, 0.4);
+        border: 1px solid #b4133c;
+      };
+
+      .features-info {
+        @include base-justify;
+        flex-direction: column;
+        gap: 4px;
+
+        &-title {
+          margin: 0;
+          line-height: 20px;
+        };
+
+        &-description {
+          margin: 0;
+          line-height: 20px;
+          color: #000000;
+        };
+      };
+    };
+
+    .program-price-btn {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 236px;
+      height: 52px;
+    };
+  };
+  .program-features-images {
+    @include base-justify;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 510px;
+    max-height: 510px;
+    margin-top: 120px;
+    cursor: pointer;
+  };
+};
+
+.popular-destinations {
+  @include base-justify();
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+
+  .popular-info {
+    @include base-justify();
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 80px;
+
+    &-title {
+      margin: 0;
+    };
+
+    &-subtitle {
+      margin: 0
+    };
+  };
+
+  .popular-images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+
+    &-container {
+      width: 380px;
+      height: 500px;
+      position: relative;
+      z-index: -1;
+      width: 380;
+
+      .popular-grade {
+        @include base-justify();
+        background: rgba(253, 253, 253, 0.4);
+        align-items: center;
+        position: absolute;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        top: 50px;
+        right: 0;
+
+        &-container {
+          @include base-justify();
+          align-items: center;
+          width: 49px;
+          height: 24px;
+          gap: 4px;
+        };
+
+        &-value {
+          width: 21px;
+          height: 18px;
+          line-height: 18px;
+          letter-spacing: 0%;
+        };
+      };
+
+      .image-prise {
+          @include base-justify();
+          align-items: center;
+          position: absolute;
+          bottom: 25px;
+          right: 32px;
+          border-radius: 4px;
+          width: 86px;
+          height: 40px;
+          background: rgba(255, 255, 255, 0.3);
+      };
+
+      .image-description {
+        position: absolute;
+        width: 380px;
+        height: 90px;
+        top: 410px;
+        border-bottom-right-radius: 32px;
+        border-bottom-left-radius: 32px;
+        background: rgba(255, 255, 255, 0.2);
+
+        .title {
+          margin: 20px auto auto 32px;
+          line-height: 120%;
+          letter-spacing: 0%;
+        };
+
+        .subtitle {
+          margin: 49px auto auto 32px;
+          line-height: 18px;
+          letter-spacing: 0%;
+        };
+      };
+    };
+  };
+
+  .rating-btn {
+    width: 244px;
+    height: 52px;
+  };
+};
+
+.tour-blogs {
+  @include base-justify();
+  background-color: rgba(243, 245, 244, 1);
+  flex-direction: column;
+  align-items: center;
+  margin-top: 95px;
+  gap: 50px;
+
+  .blogs-info {
+    @include base-justify();
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 80px;
+
+    &-title {
+      margin: 0;
+    };
+
+    &-subtitle {
+      margin: 0
+    };
+  };
+
+  .other-info-btn {
+    width: 244px;
+    height: 52px;
+    margin-bottom: 95px
+  };
+
+  .blog-posts {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 24px;
+    height: 648px;
+
+    .post-container {
+      @include base-justify();
+      align-items: center;
+      background-color: var(--white-color);
+      width: 580px;
+      height: 312px;
+      gap: 24px;      
+
+      .image-container {
+        width: 230px;
+        height: 280px;
+      };
+
+      .post-info {
+        display: flex;
+        flex-direction: column;
+        width: 294px;
+        height: 280px;
+        gap: 24px;
+      };
+
+      .highlighted-line {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+        cursor: pointer;
+      };
+
+      .description {
+        line-height: 20px;
+        height: 116px;
+        letter-spacing: 0%;
+      };
+
+      .article-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        position: relative;
+        line-height: 20px;
+
+        .article-link {
+          cursor: pointer;
+          color: var(--btn-color);
+        };
+      };
+    };
+  };
+};
+
+.photo-report {
+  @include base-justify();
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  height: 1011px;
+
+  .photo-report-info {
+    @include base-justify();
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 80px;
+
+    &-title {
+      margin: 0;
+    };
+
+    &-subtitle {
+      margin: 0
+    };
+  };
+
+  .photo-report-images {
+    @include base-justify();
+    flex-wrap: wrap;
+    gap: 20px ;
+  };
+
+  .our-pinterest-btn {
+    width: 178px;
+    height: 52px;
+    margin-top: 10px
+  };
+};
