@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DatePipe, } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ILinks } from '../interfaces/ILinks';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LoadingServiceService } from '../loading-service.service';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent {
   clicksCount: number = 0;
   isDateActive: boolean = true;
   private TimerId: ReturnType<typeof setInterval> | null = null;
+  public loadingService = inject(LoadingServiceService);
 
   navLinks: ILinks[] = [
     {
@@ -63,5 +65,13 @@ export class HeaderComponent {
   showTask() {
     this.isDateActive = !this.isDateActive;
   };
+
+  activeLoading() {
+    this.loadingService.showLoading();
+  }
+
+  deactiveLoading() {
+    this.loadingService.hideLoading();
+  }
 
 }
