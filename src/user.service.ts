@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { UserApiService } from './user-api.service';
 import { User } from '../src/interfaces';
@@ -41,7 +41,7 @@ export class UserService {
           'Не удалось загрузить данные пользователей. Попробуйте позже.'
         );
         this.usersSubject.next([]);
-        return throwError(() => error);
+        return of([]);
       }),
       
       finalize(() => {
