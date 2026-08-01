@@ -1,11 +1,163 @@
 * {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 800px;
-  background-color: rgb(245, 242, 242);
-  color: rgb(20, 20, 20);
-  font-size: 40px;
-  margin-bottom: -100px;
-};
+  font-family: sans-serif;
+}
+.users-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 48px;
+}
+
+:host {
+  display: block;
+  max-width: 1460px;
+  margin: 0 auto;
+  padding: 140px 20px 0 20px;
+  font-family: sans-serif;
+}
+
+.users-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  gap: 70px;
+  padding-bottom: 120px;
+
+  .user-card {
+    background: #ffffff;
+    border: 0px solid #e0e0e0;
+    border-top: 4px solid #D4A373;
+    border-radius: 4px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__header {
+      h1 {
+        margin: 0 0 4px 0;
+        font-size: 22px;
+        color: #1a252c;
+        font-weight: 700;
+        border-radius: 0;
+      }
+
+      span a {
+        color: #D4A373;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    .user-contact_box,
+    .user-adress__box,
+    .user-work__box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+  
+    .user-contact,
+    .user-adress,
+    .user-work {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #1a252c;
+      margin: 10px 0 5px 0;
+      padding-bottom: 6px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+
+        &::after {
+          content: '';
+          flex: 1;                  // Растягиваем линию на всю доступную ширину
+          height: 1px;
+          background-color: #E2E8F0;
+          min-width: 20px;          // Минимальная ширина линии
+        }      
+    }
+
+    .user-email,
+    .user-phone__number,
+    .user-web__site,
+    .user-city,
+    .user-street,
+    .user-suite,
+    .user-index,
+    .user-company,
+    .user-catchPhrase,
+    .user-specialization {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      line-height: 1.4;
+
+      div:first-child {
+        color: #7a8a95;
+      }
+
+      div:last-child {
+        color: #1a252c;
+        font-weight: 600;
+        text-align: right;
+        max-width: 60%;
+
+        a {
+          color: #D4A373;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .user-catchPhrase {
+      div:last-child {
+        font-style: italic;
+        font-weight: 400;
+        color: #5a6a75;
+      }
+    }
+
+    .user-coordinates {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+
+      .user-coordinates__name {
+        color: #7a8a95;
+      }
+
+      .user-coordinates__box {
+        display: flex;
+        gap: 8px;
+
+        div {
+          background: #f0f2f3;
+          color: #1a252c;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+.users-empty {
+    display: inline-block;
+    background-color: #a6635c; 
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-top: 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}

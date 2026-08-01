@@ -1,29 +1,19 @@
 import { Injectable } from '@angular/core';
 import { IMessages } from './interfaces/IMessages';
 import { MessageStatus } from './enums/Messages';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessagesControlService {
 
-    private messages: IMessages[] = [];
-    private onChangeCallBack: (() => void) | null = null;
-
-    registrOnChanges(callback: (() => void)) {
-        this.onChangeCallBack = callback;
-    };
-
-    private notifyOfChanges() {
-      if (this.onChangeCallBack) {
-        this.onChangeCallBack();
-      };
-    };
-
-
-    getMessages(): IMessages[] {
-        return this.messages
-    };
+    private messagesSubject = new BehaviorSubject<IMessages[]>([]);
+    public messages$ = this.messagesSubject.asObservable();
+   
+    private get currentMessages():IMessages[] {
+       return this.messagesSubject.getValue();
+    }
 
     private addMessage(text: string, type: MessageStatus): void {
         const newId = Date.now();
@@ -32,8 +22,10 @@ export class MessagesControlService {
             type: type,
             text: text
         };
-        this.messages.unshift(newMessage);
-        this.notifyOfChanges();
+        
+        const currenMessages = this.currentMessages;
+        const updatedMessages = [newMessage, ...currenMessages];
+        this.messagesSubject.next(updatedMessages);
 
         setTimeout(() => {
             this.closeMessage(newId);
@@ -41,28 +33,25 @@ export class MessagesControlService {
     };
 
     closeMessage(id: number): void {
-        this.messages = this.messages.filter(msg => msg.id !== id);
-        this.notifyOfChanges();
+        const currentMessages = this.currentMessages;
+        const updatedMessages = currentMessages.filter(msg => msg.id !== id);
+        this.messagesSubject.next(updatedMessages);
     };
 
     showWarn (text: string) {
         this.addMessage(text, MessageStatus.WARN);
-        this.notifyOfChanges();
     };
 
     showError (text: string) {
         this.addMessage(text, MessageStatus.ERROR);
-        this.notifyOfChanges();
     };
 
     showSuccess (text: string) {
         this.addMessage(text, MessageStatus.SUCCESS);
-        this.notifyOfChanges();
     };
 
     showInfo (text: string) {
         this.addMessage(text, MessageStatus.INFO);
-        this.notifyOfChanges();
     };
 
 };

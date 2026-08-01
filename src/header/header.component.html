@@ -13,6 +13,8 @@
       @for(link of navLinks; track link.id) {
         <a class="white-text" [routerLink] = "link.path" [routerLinkActive]="'active-link'" [routerLinkActiveOptions]="{exact: true}">{{link.title}}</a>
       }
+      <button class="button-values" (click)="activeLoading()">Показать</button>
+      <button class="button-values" (click)="deactiveLoading()">Скрыть</button>   
     </nav>
     <button id="consultation-btn" class="fs-16 semi-bold">Консультация</button>
     @if (isDateActive) {
